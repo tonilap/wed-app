@@ -1,0 +1,12 @@
+@(users: List[User])(implicit flash: Flash, lang: Lang)
+
+@main(Messages("application.name")) {
+
+    <dl class="users">
+      @for(user <- users){
+        <dt>@user.name</dt>
+        <dd>@user.surname</dd>
+        <dd>@user.email</dd>
+      }
+    </dl>
+}
