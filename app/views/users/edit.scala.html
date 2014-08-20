@@ -1,0 +1,20 @@
+@(userForm: Form[User])(implicit flash: Flash, lang: Lang)
+@import helper._
+@import helper.twitterBootstrap._
+
+@main(Messages("users.form")) {
+	
+	<h2>@Messages("users.form")</h2>
+	
+	@helper.form(action = routes.Users.save()) {
+	  <fieldset>
+	    <legend>
+	      @Messages("users.details", Messages("users.new"))
+	    </legend>
+	    @helper.inputText(userForm("name"))
+	    @helper.inputText(userForm("surname"))
+	    @helper.inputText(userForm("email"))
+	  </fieldset>
+	  <p><input type="submit" class="btn primary" value='@Messages("users.new.submit")'></p>
+	}
+}

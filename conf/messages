@@ -1,1 +1,10 @@
 application.name = Wed App
+
+users.form = User details
+users.details = 
+users.new = (new)
+users.new.submit = Add
+users.new.command = New
+users.new.success = User added {0}.
+
+validation.errors = Please correct the errors.
