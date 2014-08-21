@@ -26,6 +26,11 @@ object User {
   def findById(id: Long) = users.find(_.id == id)
   
   /**
+   * Find user by username and password
+   */
+  def findUser(username: String, password: String) = users.find(_.name == username)
+  
+  /**
    * Adds a new User
    */
   def add(user: User) = {

@@ -1,0 +1,32 @@
+@(loginForm:Form[LoginForm],message:String)
+<!DOCTYPE html>
+
+@import helper._
+@import helper.twitterBootstrap._
+ 
+ 
+@main("Wed app") {
+  @helper.form(action = routes.Application.authenticate) {
+  
+  <fieldset>
+  <legend>@message</legend>
+ 
+  @inputText(
+  loginForm("user"), '_label -> "User ",
+  '_help -> "Enter a valid user name."
+  )
+ 
+  @inputPassword(
+  loginForm("password"),
+  '_label -> "Password",
+  '_help -> "A password must be at least 6 characters. "
+  )
+ 
+  </fieldset>
+ 
+  <div>
+    <input type="submit" value="Log in ">
+  </div>
+ 
+  }
+}
