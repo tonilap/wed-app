@@ -11,8 +11,8 @@
 	    <legend>
 	      @Messages("users.details", Messages("users.new"))
 	    </legend>
-	    @helper.inputText(userForm("name"))
-	    @helper.inputText(userForm("surname"))
+	    @helper.inputText(userForm("username"))
+	    @helper.inputText(userForm("password"))
 	    @helper.inputText(userForm("email"))
 	  </fieldset>
 	  <p><input type="submit" class="btn primary" value='@Messages("users.new.submit")'></p>
