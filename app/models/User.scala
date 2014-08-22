@@ -1,11 +1,17 @@
 package models
 
+import play.api.db.DB
+import play.api.Play.current
+import anorm.SqlQuery
+import anorm.SQL
+
+
 /**
  * @author tonilap
  * 
  * User model
  */
-case class User(id: Long, name: String, surname: String, email: String)
+case class User(id: Long, username: String, password: String, email: String)
 
 /**
  * User DAO
@@ -16,9 +22,13 @@ object User {
 		  	User(2,"Cris","P","crisp@gmail.com"))
   
   /**
-   * Gets the list of users sorted by surname
+   * Gets the list of users sorted by username
    */
-  def findAll = users.toList.sortBy(_.surname) 
+  def findAll: List[User] = DB.withConnection {
+    implicit connection => 
+      sql().map(row => User(row[Long]("id"), row[String]("username"), 
+        row[String]("password"), row[String]("email"))).toList
+  }
   
   /**
    * Gets the user with the specified id
@@ -28,7 +38,7 @@ object User {
   /**
    * Find user by username and password
    */
-  def findUser(username: String, password: String) = users.find(_.name == username)
+  def findUser(username: String, password: String) = users.find(_.username == username)
   
   /**
    * Adds a new User
@@ -37,4 +47,5 @@ object User {
     users = users + user
   }
   
+  val sql: SqlQuery = SQL("select * from users order by username asc")
 }
